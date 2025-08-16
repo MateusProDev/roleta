@@ -69,63 +69,33 @@ export default function App() {
 		setWinner(null);
 	};
 
-		return (
-			<div className="roleta-container" style={{
-				background: 'radial-gradient(circle at 60% 40%, #232946 60%, #121629 100%)',
-				minHeight: '100vh',
-				padding: '0',
-				boxShadow: '0 0 80px #43e97b inset',
-			}}>
+			return (
+				<div className="roleta-container">
 				{/* Efeito de partículas */}
-				<div className="particles-container">
-					{[...Array(30)].map((_, i) => (
-						<div
-							key={i}
-							className="particle"
-							style={{
-								'--delay': `${i * 0.15}s`,
-								'--color': prizes[i % prizes.length].style.backgroundColor,
-								'--size': `${Math.random() * 10 + 6}px`,
-								'--pos-x': `${Math.random() * 100}%`,
-								'--pos-y': `${Math.random() * 100}%`,
-								filter: 'blur(1px)',
-							}}
-						/>
-					))}
-				</div>
+						<div className="particles-container">
+							{[...Array(30)].map((_, i) => (
+								<div
+									key={i}
+									className="particle"
+									style={{
+										'--delay': `${i * 0.15}s`,
+										'--color': prizes[i % prizes.length].style.backgroundColor,
+										'--size': `${Math.random() * 10 + 6}px`,
+										'--pos-x': `${Math.random() * 100}%`,
+										'--pos-y': `${Math.random() * 100}%`,
+									}}
+								/>
+							))}
+						</div>
 
 				{/* Título com efeito neon */}
-				<h1 className="roleta-title" style={{
-					fontSize: '3rem',
-					textAlign: 'center',
-					marginTop: '2rem',
-					color: '#fff',
-					textShadow: '0 0 20px #43e97b, 0 0 40px #232946',
-					letterSpacing: '2px',
-				}}>
-					<span className="neon-text">ROLETA</span>
-					<span className="neon-subtext" style={{
-						display: 'block',
-						fontSize: '1.2rem',
-						color: '#38f9d7',
-						textShadow: '0 0 10px #38f9d7',
-					}}>DOS BENEFÍCIOS</span>
-				</h1>
+						<h1 className="roleta-title">
+							<span className="neon-text">ROLETA</span>
+							<span className="neon-subtext">DOS BENEFÍCIOS</span>
+						</h1>
 
 				{/* Roleta com react-custom-roulette */}
-				<div className="wheel-wrapper" style={{
-					position: 'relative',
-					margin: '2rem auto',
-					width: wheelSize,
-					maxWidth: '100vw',
-					boxShadow: '0 8px 40px #38f9d7, 0 0 80px #43e97b inset',
-					borderRadius: '50%',
-					background: 'linear-gradient(145deg, #232946 60%, #38f9d7 100%)',
-					padding: '2rem',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}>
+				<div className="wheel-wrapper">
 					<Wheel
 						mustStartSpinning={mustSpin}
 						prizeNumber={prizeNumber}
@@ -156,41 +126,14 @@ export default function App() {
 						perpendicularText={true}
 						width={wheelSize}
 					/>
-					{/* Seta 3D */}
-					<div style={{
-						position: 'absolute',
-						top: '50%',
-						left: '100%',
-						transform: 'translate(-50%, -50%)',
-						zIndex: 2,
-					}}>
-						<svg width="60" height="60" style={{ filter: 'drop-shadow(0 0 12px #43e97b)' }}>
-							<polygon points="0,30 60,0 60,60" fill="#fff" stroke="#43e97b" strokeWidth="6" />
-							<polygon points="10,30 50,10 50,50" fill="#38f9d7" opacity="0.5" />
-						</svg>
-					</div>
 				</div>
 
 				{/* Botão de ação */}
-				<button
-					className={`spin-button ${mustSpin ? 'disabled' : ''}`}
-					onClick={handleSpinClick}
-					disabled={mustSpin}
-					style={{
-						margin: '2rem auto',
-						display: 'block',
-						fontSize: '1.3rem',
-						padding: '1rem 2.5rem',
-						borderRadius: '40px',
-						background: 'linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)',
-						color: '#fff',
-						fontWeight: 'bold',
-						boxShadow: '0 0 20px #43e97b',
-						border: 'none',
-						cursor: mustSpin ? 'not-allowed' : 'pointer',
-						transition: 'background 0.3s',
-					}}
-				>
+						<button
+							className={`spin-button ${mustSpin ? 'disabled' : ''}`}
+							onClick={handleSpinClick}
+							disabled={mustSpin}
+						>
 					{mustSpin ? (
 						<span className="spinner"></span>
 					) : (
@@ -199,57 +142,32 @@ export default function App() {
 				</button>
 
 				{/* Resultado */}
-				{winner && (
-					<div
-						className="result-container"
-						style={{
-							'--prize-color': winner.style.backgroundColor,
-							background: winner.style.backgroundColor,
-							color: winner.style.textColor,
-							boxShadow: winner.style.boxShadow,
-							borderRadius: '24px',
-							padding: '2rem',
-							margin: '2rem auto',
-							maxWidth: '400px',
-							textAlign: 'center',
-							fontSize: '1.2rem',
-						}}
-					>
-						<h3 style={{ fontSize: '2rem', marginBottom: '1rem', textShadow: '0 0 10px #fff' }}>🎉 VOCÊ GANHOU:</h3>
-						<p className="prize-name" style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-							{winner.icon} {winner.option}
-						</p>
-						<p className="prize-description" style={{ marginBottom: '1rem' }}>{winner.description}</p>
-						{winner.option !== 'Nada' && winner.option !== 'Tente Novamente' && (
-							<button className="claim-button" style={{
-								background: 'linear-gradient(90deg, #43e97b 0%, #38f9d7 100%)',
-								color: '#fff',
-								border: 'none',
-								borderRadius: '30px',
-								padding: '0.7rem 2rem',
-								fontWeight: 'bold',
-								fontSize: '1.1rem',
-								boxShadow: '0 0 10px #43e97b',
-								cursor: 'pointer',
-								marginTop: '1rem',
-							}}>RESGATAR PRÊMIO</button>
+						{winner && (
+							<div
+								className="result-container"
+								style={{
+									'--prize-color': winner.style.backgroundColor,
+									color: winner.style.textColor,
+									boxShadow: winner.style.boxShadow,
+								}}
+							>
+								<h3 className="result-title">🎉 VOCÊ GANHOU:</h3>
+								<p className="prize-name">
+									{winner.icon} {winner.option}
+								</p>
+								<p className="prize-description">{winner.description}</p>
+								{winner.option !== 'Nada' && winner.option !== 'Tente Novamente' && (
+									<button className="claim-button">RESGATAR PRÊMIO</button>
+								)}
+							</div>
 						)}
-					</div>
-				)}
 
 				{/* Rodapé */}
-				<p className="disclaimer" style={{
-					color: '#fff',
-					textAlign: 'center',
-					marginTop: '2rem',
-					opacity: 0.7,
-					fontSize: '1rem',
-					textShadow: '0 0 8px #232946',
-				}}>
-					Giros disponíveis: 1 por dia
-					<br />
-					Ofertas válidas por tempo limitado
-				</p>
+						<p className="disclaimer">
+							Giros disponíveis: 1 por dia
+							<br />
+							Ofertas válidas por tempo limitado
+						</p>
 			</div>
 		);
 }

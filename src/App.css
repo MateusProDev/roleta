@@ -1,34 +1,27 @@
 /* Roleta.css */
+/* Roleta.css */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
 
-:root {
-  --bg-color: #0f172a;
-  --glass-effect: rgba(255, 255, 255, 0.05);
-}
 
-.roleta-container {
-  position: relative;
-  min-height: 100vh;
-  background: var(--bg-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-}
+/* ...existing code... */
+
+
+
+  /* ...existing code... */
 
 /* Efeito de partículas */
+
 .particles-container {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   z-index: 0;
+  pointer-events: none;
 }
+
 
 .particle {
   position: absolute;
@@ -38,198 +31,266 @@
   border-radius: 50%;
   top: var(--pos-y);
   left: var(--pos-x);
-  opacity: 0.7;
-  filter: blur(1px);
-  animation: float 15s infinite var(--delay);
+  opacity: 0.5;
+  filter: blur(2px) brightness(1.2);
+  animation: float 18s infinite var(--delay);
+  box-shadow: 0 0 16px var(--color), 0 0 32px var(--color) inset;
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(20px, 20px);
-  }
-  50% {
-    transform: translate(-10px, 30px);
-  }
-  75% {
-    transform: translate(15px, -10px);
-  }
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(20px, 20px); }
+  50% { transform: translate(-10px, 30px); }
+  75% { transform: translate(15px, -10px); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Título */
+
 .roleta-title {
   text-align: center;
   margin-bottom: 2rem;
   z-index: 1;
-}
-
-.neon-text {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(2rem, 8vw, 4rem);
-  color: #fff;
-  text-shadow: 
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 20px #22d3ee,
-    0 0 40px #22d3ee;
-  letter-spacing: 3px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
-.neon-subtext {
-  display: block;
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(1rem, 4vw, 1.5rem);
-  color: #a21caf;
-  text-shadow: 
-    0 0 5px #a21caf,
-    0 0 10px #a21caf;
-  margin-top: 0.5rem;
-}
 
-/* Roleta */
-.wheel-wrapper {
-  position: relative;
-  margin: 2rem 0;
-  z-index: 1;
-}
+  /* ...existing code... */
+/* Variáveis CSS devem estar apenas dentro de :root no topo do arquivo */
 
-.wheel-marker {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 30px;
-  background: #fff;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  filter: drop-shadow(0 0 5px #22d3ee);
-  z-index: 2;
-}
-
-/* Botão */
-.spin-button {
-  background: linear-gradient(90deg, #22d3ee 0%, #a21caf 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 
-    0 0 10px #22d3ee,
-    0 0 20px #a21caf;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  margin-top: 1rem;
-}
-
-.spin-button:hover:not(.disabled) {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 0 15px #22d3ee,
-    0 0 30px #a21caf;
-}
-
-.spin-button.disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Resultado */
-.result-container {
-  background: var(--glass-effect);
-  -webkit-backdrop-filter: blur(10px); /* Suporte Safari */
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--prize-color);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  text-align: center;
-  max-width: 90%;
-  box-shadow: 
-    0 0 10px var(--prize-color),
-    inset 0 0 10px rgba(255, 255, 255, 0.1);
-  animation: fadeIn 0.5s ease-out;
-  z-index: 1;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.prize-name {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.5rem;
-  color: var(--prize-color);
-  margin: 0.5rem 0;
-  text-shadow: 0 0 5px var(--prize-color);
-}
-
-.prize-description {
-  color: #ccc;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-}
-
-.claim-button {
-  background: var(--prize-color);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.claim-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px var(--prize-color);
-}
-
-/* Rodapé */
-.disclaimer {
-  color: #64748b;
-  font-size: 0.8rem;
-  text-align: center;
-  margin-top: 2rem;
-  z-index: 1;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
   .roleta-container {
+    position: relative;
+    min-height: 100vh;
+    background: radial-gradient(circle at 60% 40%, var(--accent) 60%, var(--bg-color) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 0 3rem 0;
+    overflow: hidden;
+    font-family: 'Roboto', 'Orbitron', sans-serif;
+    box-shadow: var(--shadow);
+    width: 100vw;
+    max-width: 100vw;
+/* Removido chave extra para corrigir erro de sintaxe */
+
+  .particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color);
+    border-radius: 50%;
+    top: var(--pos-y);
+    left: var(--pos-x);
+    opacity: 0.5;
+    filter: blur(2px) brightness(1.2);
+    animation: float 18s infinite var(--delay);
+    box-shadow: 0 0 16px var(--color), 0 0 32px var(--color) inset;
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(20px, 20px); }
+    50% { transform: translate(-10px, 30px); }
+    75% { transform: translate(15px, -10px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  .roleta-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    z-index: 1;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .neon-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 30px var(--primary), 0 0 60px var(--secondary);
+    letter-spacing: 4px;
+  }
+
+  .neon-subtext {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.1rem, 4vw, 1.7rem);
+    color: var(--secondary);
+    text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--primary);
+    margin-top: 0.5rem;
+  }
+
+  .wheel-wrapper {
+    position: relative;
+    margin: 2rem auto 1.5rem auto;
+    z-index: 1;
+    width: 100%;
+    max-width: 380px;
+    min-width: 180px;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, var(--accent) 60%, var(--secondary) 100%);
+    border-radius: 50%;
+    box-shadow: 0 8px 40px var(--secondary), 0 0 80px var(--primary) inset;
     padding: 1rem;
   }
-  
-  .wheel-marker {
-    top: -10px;
-    width: 20px;
-    height: 20px;
-  }
-  
+
   .spin-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2.2rem;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: 1.2rem auto 0 auto;
+    letter-spacing: 1px;
+    display: block;
   }
-}
+
+  .spin-button:hover:not(.disabled) {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 30px var(--primary), 0 0 60px var(--secondary);
+  }
+
+  .spin-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .result-container {
+    background: var(--glass-effect);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 2px solid var(--prize-color);
+    border-radius: var(--border-radius);
+    padding: 1.2rem;
+    margin: 1.5rem auto 0 auto;
+    text-align: center;
+    max-width: 340px;
+    box-shadow: 0 0 30px var(--prize-color), 0 0 60px var(--primary) inset;
+    animation: fadeIn 0.5s ease-out;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .result-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+    text-shadow: 0 0 10px #fff;
+    text-align: center;
+  }
+
+  .prize-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: var(--prize-color);
+    margin: 0.3rem 0 0.3rem 0;
+    text-shadow: 0 0 10px var(--prize-color), 0 0 20px var(--primary);
+    text-align: center;
+  }
+
+  .prize-description {
+    color: #e0e0e0;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .claim-button {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+    margin-top: 0.3rem;
+    text-align: center;
+  }
+
+  .claim-button:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 0 30px var(--primary), 0 0 60px var(--secondary);
+  }
+
+  .disclaimer {
+    color: #b3b3b3;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 1.2rem;
+    z-index: 1;
+    text-shadow: 0 0 8px var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .roleta-container {
+      padding: 0.5rem;
+      width: 100vw;
+      max-width: 100vw;
+    }
+    .wheel-wrapper {
+      padding: 0.5rem;
+      min-width: 120px;
+      max-width: 98vw;
+      margin: 1rem auto 1rem auto;
+    }
+    .spin-button {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .result-container {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      max-width: 95vw;
+      margin: 1rem auto 0 auto;
+    }
+    .prize-name {
+      font-size: 1rem;
+    }
+  }
+  }
