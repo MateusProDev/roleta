@@ -1,0 +1,4 @@
+- [x] Projeto React Vite criado com template React
+- [x] Dependências instaladas: react-wheel-of-prizes, canvas-confetti
+- [x] README.md criado
+- [ ] Customizar roleta conforme requisitos visuais e funcionais
