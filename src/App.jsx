@@ -15,7 +15,7 @@ const prizes = [
 		style: { backgroundColor: '#a21caf', textColor: '#fff' },
 		icon: '📈',
 		description: '6 meses de analytics premium (R$ 180)',
-	},
+	}, 
 	{
 		option: 'Upgrade Pro',
 		style: { backgroundColor: '#f59e0b', textColor: '#fff' },
